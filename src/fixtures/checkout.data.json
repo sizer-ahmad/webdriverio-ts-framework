@@ -1,0 +1,11 @@
+{
+  "cartItemCount": "2",
+  "cartHeaderText": "Your Cart",
+  "firstName": "Automation",
+  "lastName": "Test User",
+  "zipCode": "55982",
+  "checkoutHeaderText": "Checkout: Your Information",
+  "overViewHeaderText": "Checkout: Overview",
+  "orderCompleteHeaderText": "Checkout: Complete!",
+  "orderConfirmationText": "Thank you for your order!"
+}

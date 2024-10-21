@@ -45,7 +45,7 @@ export const config: WebdriverIO.Config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -92,14 +92,14 @@ export const config: WebdriverIO.Config = {
   // baseUrl: 'http://localhost:8080',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 5000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
-  connectionRetryTimeout: 120000,
+  connectionRetryTimeout: 60000,
   //
   // Default request retries count
-  connectionRetryCount: 3,
+  connectionRetryCount: 1,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -244,12 +244,13 @@ export const config: WebdriverIO.Config = {
   // afterTest: function(test, context, { error, result, duration, passed, retries }) {
   // },
 
-  afterTest: function (test, _context, { error, passed }) {
-    if (passed) {
-      logger.info(`Test passed: ${test.title}`);
-    } else {
+  afterTest: async function (test, _context, { error, passed }) {
+    if (!passed) {
       const errorMessage = error ? error.message : "No error message available";
       logger.error(`Test failed: ${test.title}, Error: ${errorMessage}`);
+      await browser.takeScreenshot();
+    } else {
+      logger.info(`Test passed: ${test.title}`);
     }
   },
 
