@@ -1,7 +1,7 @@
 import winston from "winston";
 import * as fs from "fs";
 
-const filePath = "logs/combined.log";
+const filePath = "./reports/logs/combined.log";
 if (fs.existsSync(filePath)) {
   fs.unlinkSync(filePath);
 }
